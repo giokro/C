@@ -1,0 +1,41 @@
+void DataStructure::deStruct3() {
+
+	for (int i = 0; i < 26; i++) {
+
+		HEADER_A* pPrevHead = 0;
+
+		if (ppStruct3[i] != 0) {
+			
+			HEADER_A* temp_head = ppStruct3[i];
+			for (temp_head; temp_head != 0; temp_head = temp_head->pNext) {
+				delete pPrevHead;
+
+				ITEM6* pPrevItem = 0;
+				ITEM6* temp_item = (ITEM6*)temp_head->pItems;
+				for (temp_item; temp_item != 0; temp_item = temp_item->pNext) {
+					
+					delete pPrevItem;
+					delete (temp_item->pID);
+
+					if (temp_item->pNext == 0) {
+						delete temp_item;
+						break;
+					}
+					else {
+						pPrevItem = new ITEM6;
+						pPrevItem = temp_item;
+					}
+				}
+
+				if (temp_head->pNext == 0) {
+					delete temp_head;
+					break;
+				}
+				else {
+					pPrevHead = new HEADER_A;
+					pPrevHead = temp_head;
+				}
+			}
+		}
+	}
+}
